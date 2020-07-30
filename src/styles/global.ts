@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
 
-export default createGlobalStyle`
+interface IThemeProps {
+    backgroundColor: string;
+    textColor: string;
+}
+
+export const GlobalStyle = createGlobalStyle<IThemeProps>`
     * {
         margin: 0;
         padding: 0;
@@ -9,8 +14,9 @@ export default createGlobalStyle`
     }
 
     body {
-        background: #ededed;
-        color: #333;
+        background: ${({ backgroundColor }) => backgroundColor};
+        color: ${({ textColor }) => textColor};
+
         -webkit-font-smoothing: antialiased;
     }
 

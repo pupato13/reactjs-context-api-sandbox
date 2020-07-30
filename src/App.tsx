@@ -3,15 +3,25 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 import Routes from "./routes";
 
-import GlobalStyle from "./styles/global";
+// hooks
+import ThemeProvider, { useTheme } from "./context/Theme";
 
-const App: React.FC = () => (
-    <>
-        <GlobalStyle />
-        <Router>
-            <Routes />
-        </Router>
-    </>
-);
+import { GlobalStyle } from "./styles/global";
+
+const App: React.FC = () => {
+    const { theme } = useTheme();
+
+    return (
+        <ThemeProvider>
+            <GlobalStyle
+                backgroundColor={theme.themeProps.backgroundColor}
+                textColor={theme.themeProps.textColor}
+            />
+            <Router>
+                <Routes />
+            </Router>
+        </ThemeProvider>
+    );
+};
 
 export default App;
